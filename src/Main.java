@@ -44,31 +44,28 @@ public class Main {
         JLabel label3 = new JLabel("Ingresa un valor en grados centigrados:");
         label3.setBounds(50, 210, 250, 30);
 
+        JTextField campo3 = new JTextField();
+        campo3.setBounds(50, 250, 250, 30);
+
         JButton botonConvertirFahrenheit = new JButton("Convertir a fahrenheit");
-        botonConvertirFahrenheit.setBounds(50, 240, 200, 40);
+        botonConvertirFahrenheit.setBounds(50, 300, 200, 40);
 
         JButton botonConvertirCelsius = new JButton("Convertir a Celsius");
-        botonConvertirCelsius.setBounds(310, 240, 200, 40);
+        botonConvertirCelsius.setBounds(310, 300, 200, 40);
 
         // ----------------------Conversion de Moneda ------------------------
 
-        JLabel label4 = new JLabel("Ingresa un valor en dolares (USB):");
-        label4.setBounds(50, 330, 250, 30);
-
-        JLabel label5 = new JLabel("Ingresa un valor en PesosColombianos (COP):");
-        label5.setBounds(300, 330, 300, 30);
-
-        JTextField campo3 = new JTextField();
-        campo3.setBounds(50, 360, 250, 30);
+        JLabel label4 = new JLabel("Ingresa un valor en conversion:");
+        label4.setBounds(50, 380, 300, 30);
 
         JTextField campo4 = new JTextField();
-        campo4.setBounds(300, 360, 250, 30);
+        campo4.setBounds(50, 410, 250, 30);
 
         JButton botonConvertirDolares = new JButton("Convertir a dolares (USB)");
-        botonConvertirDolares.setBounds(50, 390, 200, 40);
+        botonConvertirDolares.setBounds(50, 460, 200, 40);
 
         JButton botonConvertirPesos = new JButton("Convertir a PesosColombianos (COP)");
-        botonConvertirPesos.setBounds(310, 390, 200, 40);
+        botonConvertirPesos.setBounds(310, 460, 200, 40);
 
         // ----------------------agregar elementos de ventanta ------------------------
 
@@ -76,15 +73,18 @@ public class Main {
         ventana.add(label2);
         ventana.add(label3);
         ventana.add(label4);
-        ventana.add(label5);
         ventana.add(campo1);
         ventana.add(campo2);
+        ventana.add(campo3);
+        ventana.add(campo4);
         ventana.add(sumarBoton);
         ventana.add(restarBoton);
         ventana.add(multiplicarButton);
         ventana.add(dividirButton);
         ventana.add(botonConvertirCelsius);
         ventana.add(botonConvertirFahrenheit);
+        ventana.add(botonConvertirDolares);
+        ventana.add(botonConvertirPesos);
 
         // ----------------------------------------------
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
