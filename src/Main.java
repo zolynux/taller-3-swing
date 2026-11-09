@@ -86,128 +86,59 @@ public class Main {
 
         // ---------------------- EventActions ------------------------
 
-        // ---------------------- Sumar ------------------------
-
-        botonSumar.addActionListener(new ActionListener() {
+        ActionListener manejadorDeEventos = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
                 try {
-                    mostrarMensaje(
-                            "Suma es: " + formatear(leerNumero(operaCampo1) + leerNumero(operaCampo2)));
-                } catch (NumberFormatException ex) {
-                    mostrarError("Por favor, ingresa solo números válidos");
-                }
-            }
-        });
+                    Object fuente = e.getSource();
 
-        // ---------------------- Restar ------------------------
+                    if (fuente == botonSumar) {
+                        // ---------------------- Sumar ------------------------
+                        mostrarMensaje("Suma es: " + formatear(leerNumero(operaCampo1) + leerNumero(operaCampo2)));
 
-        botonRestar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                try {
-                    mostrarMensaje(
-                            "Resta es: " + formatear(leerNumero(operaCampo1) - leerNumero(operaCampo2)));
-                } catch (NumberFormatException ex) {
-                    mostrarError("Por favor, ingresa solo números válidos");
-                }
-            }
-        });
-
-        // ---------------------- Multplicacion ------------------------
-
-        botonMultiplicar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                try {
-                    mostrarMensaje(
-                            "Multiplicación es: " + formatear(leerNumero(operaCampo1) * leerNumero(operaCampo2)));
-                } catch (NumberFormatException ex) {
-                    mostrarError("Por favor, ingresa solo números válidos");
-                }
-            }
-
-        });
-
-        // ---------------------- Division ------------------------
-
-        botonDividir.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                try {
-                    if (leerNumero(operaCampo2) == 0) {
-                        mostrarError("No se puede dividir entre cero.");
-                    } else {
+                    } else if (fuente == botonRestar) {
+                        // ---------------------- Restar ------------------------
+                        mostrarMensaje("Resta es: " + formatear(leerNumero(operaCampo1) - leerNumero(operaCampo2)));
+                    } else if (fuente == botonMultiplicar) {
+                        // ---------------------- Multplicacion ------------------------
                         mostrarMensaje(
-                                "División es: " + formatear(leerNumero(operaCampo1) / leerNumero(operaCampo2)));
+                                "Multiplicación es: " + formatear(leerNumero(operaCampo1) * leerNumero(operaCampo2)));
+                    } else if (fuente == botonDividir) {
+                        // ---------------------- Division ------------------------
+                        if (leerNumero(operaCampo2) == 0) {
+                            mostrarError("No se puede dividir entre cero.");
+                        } else {
+                            mostrarMensaje(
+                                    "División es: " + formatear(leerNumero(operaCampo1) / leerNumero(operaCampo2)));
+                        }
+                    } else if (fuente == botonConvertirFahrenheit) {
+                        // ---------------------- Convertir °C a °F------------------------
+                        double fahrenheit = (leerNumero(tempCampo) * 9.0 / 5.0) + 32;
+                        mostrarMensaje("Fahrenheit: " + formatear(fahrenheit) + " °F");
+                    } else if (fuente == botonConvertirCelsius) {
+                        // ---------------------- Convertir °F a °C ------------------------
+                        double celsius = (leerNumero(tempCampo) - 32) * 5.0 / 9.0;
+                        mostrarMensaje("Celsius: " + formatear(celsius) + " °C");
+                    } else if (fuente == botonConvertirDolares) {
+                        // ---------------------- Convertir el monto en USD ------------------------
+                        double USD = leerNumero(monedaCampo) / TASA_USD_COP;
+                        mostrarMensaje("USD " + formatear(USD));
+                    } else if (fuente == botonConvertirPesos) {
+                        // ---------------------- Convertir el monto en COP ------------------------
+                        double COP = leerNumero(monedaCampo) * TASA_USD_COP;
+                        mostrarMensaje("COP " + formatear(COP));
                     }
 
                 } catch (NumberFormatException ex) {
                     mostrarError("Por favor, ingresa solo números válidos");
                 }
             }
-        });
-
-        // ---------------------- Convertir °C a °F------------------------
-
-        botonConvertirFahrenheit.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    double fahrenheit = (leerNumero(tempCampo) * 9.0 / 5.0) + 32;
-                    mostrarMensaje("Fahrenheit: " + formatear(fahrenheit) + " °F");
-                } catch (NumberFormatException ex) {
-                    mostrarError("Por favor, ingresa solo números válidos");
-                }
-            }
-        });
-
-        // ---------------------- Convertir °F a °C ------------------------
-
-        botonConvertirCelsius.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    double celsius = (leerNumero(tempCampo) - 32) * 5.0 / 9.0;
-                    mostrarMensaje("Celsius: " + formatear(celsius) + " °C");
-                } catch (NumberFormatException ex) {
-                    mostrarError("Por favor, ingresa solo números válidos");
-                }
-            }
-        });
-
-        // ---------------------- Convertir el monto en USD ------------------------
-
-        botonConvertirDolares.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    double USD = leerNumero(monedaCampo) / TASA_USD_COP;
-                    mostrarMensaje("USD " + formatear(USD));
-                } catch (NumberFormatException ex) {
-                    mostrarError("Por favor, ingresa solo números válidos");
-                }
-            }
-        });
-
-        // ---------------------- Convertir el monto en COP ------------------------
-
-        botonConvertirPesos.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    double COP = leerNumero(monedaCampo) * TASA_USD_COP;
-                    mostrarMensaje("COP " + formatear(COP));
-                } catch (NumberFormatException ex) {
-                    mostrarError("Por favor, ingresa solo números válidos");
-                }
-            }
-        });
-
+        };
+        for (JButton b : new JButton[] { botonSumar, botonRestar, botonMultiplicar, botonDividir,
+                botonConvertirFahrenheit, botonConvertirCelsius,
+                botonConvertirDolares, botonConvertirPesos }) {
+            b.addActionListener(manejadorDeEventos);
+        }
         // ----------------------agregar elementos de ventanta ------------------------
         for (Component c : new Component[] { label1, label2, label3, label4,
                 operaCampo1, operaCampo2, tempCampo, monedaCampo,
