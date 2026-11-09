@@ -41,7 +41,7 @@ public class Main {
 
         // ----------------------Conversion de temperatura ------------------------
 
-        JLabel label3 = new JLabel("Ingresa un valor en grados centigrados:");
+        JLabel label3 = new JLabel("Ingresa la temperatura a convertir:");
         label3.setBounds(50, 210, 250, 30);
 
         JTextField campo3 = new JTextField();
@@ -55,17 +55,24 @@ public class Main {
 
         // ----------------------Conversion de Moneda ------------------------
 
-        JLabel label4 = new JLabel("Ingresa un valor en conversion:");
+        JLabel label4 = new JLabel("Ingresa el monto a convertir:");
         label4.setBounds(50, 380, 300, 30);
 
         JTextField campo4 = new JTextField();
         campo4.setBounds(50, 410, 250, 30);
 
-        JButton botonConvertirDolares = new JButton("Convertir a dolares (USB)");
+        JButton botonConvertirDolares = new JButton("Convertir a dolares (USD)");
         botonConvertirDolares.setBounds(50, 460, 200, 40);
 
-        JButton botonConvertirPesos = new JButton("Convertir a PesosColombianos (COP)");
+        JButton botonConvertirPesos = new JButton("Convertir a Pesos Colombianos (COP)");
         botonConvertirPesos.setBounds(310, 460, 200, 40);
+
+        // ---------------------- EventActions ------------------------
+        try {
+
+        } catch (NumberFormatException e) {
+            // TODO: handle exception
+        }
 
         // ----------------------agregar elementos de ventanta ------------------------
 
