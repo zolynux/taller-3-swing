@@ -18,6 +18,10 @@ public class Main {
         JOptionPane.showMessageDialog(null, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
     }
 
+    private static void mostrarMensaje(String mensaje) {
+        JOptionPane.showMessageDialog(null, mensaje);
+    }
+
     public static void main(String[] args) {
         // ----------------------Titulos------------------------
 
@@ -89,7 +93,7 @@ public class Main {
             public void actionPerformed(ActionEvent e) {
 
                 try {
-                    JOptionPane.showMessageDialog(null,
+                    mostrarMensaje(
                             "Suma es: " + formatear(leerNumero(operaCampo1) + leerNumero(operaCampo2)));
                 } catch (NumberFormatException ex) {
                     mostrarError("Por favor, ingresa solo números válidos");
@@ -104,7 +108,7 @@ public class Main {
             public void actionPerformed(ActionEvent e) {
 
                 try {
-                    JOptionPane.showMessageDialog(null,
+                    mostrarMensaje(
                             "Resta es: " + formatear(leerNumero(operaCampo1) - leerNumero(operaCampo2)));
                 } catch (NumberFormatException ex) {
                     mostrarError("Por favor, ingresa solo números válidos");
@@ -119,7 +123,7 @@ public class Main {
             public void actionPerformed(ActionEvent e) {
 
                 try {
-                    JOptionPane.showMessageDialog(null,
+                    mostrarMensaje(
                             "Multiplicación es: " + formatear(leerNumero(operaCampo1) * leerNumero(operaCampo2)));
                 } catch (NumberFormatException ex) {
                     mostrarError("Por favor, ingresa solo números válidos");
@@ -138,7 +142,7 @@ public class Main {
                     if (leerNumero(operaCampo2) == 0) {
                         mostrarError("No se puede dividir entre cero.");
                     } else {
-                        JOptionPane.showMessageDialog(null,
+                        mostrarMensaje(
                                 "División es: " + formatear(leerNumero(operaCampo1) / leerNumero(operaCampo2)));
                     }
 
@@ -155,7 +159,7 @@ public class Main {
             public void actionPerformed(ActionEvent e) {
                 try {
                     double fahrenheit = (leerNumero(tempCampo) * 9.0 / 5.0) + 32;
-                    JOptionPane.showMessageDialog(null, "Fahrenheit: " + formatear(fahrenheit) + " °F");
+                    mostrarMensaje("Fahrenheit: " + formatear(fahrenheit) + " °F");
                 } catch (NumberFormatException ex) {
                     mostrarError("Por favor, ingresa solo números válidos");
                 }
@@ -169,7 +173,7 @@ public class Main {
             public void actionPerformed(ActionEvent e) {
                 try {
                     double celsius = (leerNumero(tempCampo) - 32) * 5.0 / 9.0;
-                    JOptionPane.showMessageDialog(null, "Celsius: " + formatear(celsius) + " °C");
+                    mostrarMensaje("Celsius: " + formatear(celsius) + " °C");
                 } catch (NumberFormatException ex) {
                     mostrarError("Por favor, ingresa solo números válidos");
                 }
@@ -183,7 +187,7 @@ public class Main {
             public void actionPerformed(ActionEvent e) {
                 try {
                     double USD = leerNumero(monedaCampo) / TASA_USD_COP;
-                    JOptionPane.showMessageDialog(null, "USD " + formatear(USD));
+                    mostrarMensaje("USD " + formatear(USD));
                 } catch (NumberFormatException ex) {
                     mostrarError("Por favor, ingresa solo números válidos");
                 }
@@ -197,7 +201,7 @@ public class Main {
             public void actionPerformed(ActionEvent e) {
                 try {
                     double COP = leerNumero(monedaCampo) * TASA_USD_COP;
-                    JOptionPane.showMessageDialog(null, "COP " + formatear(COP));
+                    mostrarMensaje("COP " + formatear(COP));
                 } catch (NumberFormatException ex) {
                     mostrarError("Por favor, ingresa solo números válidos");
                 }
