@@ -1,4 +1,6 @@
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Main {
     public static void main(String[] args) {
@@ -9,7 +11,7 @@ public class Main {
         ventana.setSize(800, 600);
         ventana.setLayout(null);
 
-        // ----------------------Subtitulos------------------------
+        // ---------------------operaciones aritméticas-------------------------
 
         JLabel label1 = new JLabel("Ingresa el primer numero:");
         label1.setBounds(50, 50, 200, 30);
@@ -17,27 +19,23 @@ public class Main {
         JLabel label2 = new JLabel("Ingresa el segundo numero:");
         label2.setBounds(450, 50, 200, 30);
 
-        // ----------------------Campos------------------------
-
         JTextField campo1 = new JTextField();
         campo1.setBounds(50, 80, 300, 30);
 
         JTextField campo2 = new JTextField();
         campo2.setBounds(450, 80, 300, 30);
 
-        // ---------------------operaciones aritméticas-------------------------
+        JButton botonSumar = new JButton("Sumar");
+        botonSumar.setBounds(50, 120, 110, 40);
 
-        JButton sumarBoton = new JButton("Sumar");
-        sumarBoton.setBounds(50, 120, 110, 40);
+        JButton botonRestar = new JButton("Restar");
+        botonRestar.setBounds(170, 120, 110, 40);
 
-        JButton restarBoton = new JButton("Restar");
-        restarBoton.setBounds(170, 120, 110, 40);
+        JButton botonMultiplicar = new JButton("Multiplicar");
+        botonMultiplicar.setBounds(290, 120, 110, 40);
 
-        JButton multiplicarButton = new JButton("Multiplicar");
-        multiplicarButton.setBounds(290, 120, 110, 40);
-
-        JButton dividirButton = new JButton("Dividir");
-        dividirButton.setBounds(410, 120, 110, 40);
+        JButton botonDividir = new JButton("Dividir");
+        botonDividir.setBounds(410, 120, 110, 40);
 
         // ----------------------Conversion de temperatura ------------------------
 
@@ -70,8 +68,98 @@ public class Main {
         // ---------------------- EventActions ------------------------
         try {
 
+            // ---------------------- Sumar ------------------------
+
+            botonSumar.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+
+                    try {
+                        double num1 = Double.parseDouble(campo1.getText());
+                        double num2 = Double.parseDouble(campo2.getText());
+
+                        double sumar = num1 + num2;
+
+                        JOptionPane.showMessageDialog(null, "Suma es: " + sumar);
+
+                    } catch (NumberFormatException ex) {
+                        JOptionPane.showMessageDialog(null, "Por favor, ingresa solo números válidos", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+
+            });
+
+            // ---------------------- Restar ------------------------
+
+            botonRestar.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+
+                    try {
+                        double num1 = Double.parseDouble(campo1.getText());
+                        double num2 = Double.parseDouble(campo2.getText());
+
+                        double restar = num1 - num2;
+
+                        JOptionPane.showMessageDialog(null, "Resta es: " + restar);
+
+                    } catch (NumberFormatException ex) {
+                        JOptionPane.showMessageDialog(null, "Por favor, ingresa solo números válidos", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+
+            });
+
+            // ---------------------- Multplicacion ------------------------
+
+            botonMultiplicar.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+
+                    try {
+                        double num1 = Double.parseDouble(campo1.getText());
+                        double num2 = Double.parseDouble(campo2.getText());
+
+                        double multiplicar = num1 * num2;
+
+                        JOptionPane.showMessageDialog(null, "Multiplicación es: " + multiplicar);
+
+                    } catch (NumberFormatException ex) {
+                        JOptionPane.showMessageDialog(null, "Por favor, ingresa solo números válidos", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+
+            });
+
+            // ---------------------- Division ------------------------
+
+            botonDividir.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+
+                    try {
+                        double num1 = Double.parseDouble(campo1.getText());
+                        double num2 = Double.parseDouble(campo2.getText());
+
+                        if (num2 == 0) {
+                            JOptionPane.showMessageDialog(null, "No se puede dividir entre cero.", "Error", JOptionPane.ERROR_MESSAGE);
+                        } else {
+                            double dividir = num1 / num2;
+
+                            JOptionPane.showMessageDialog(null, "División es: " + dividir);
+                        }
+
+
+                    } catch (NumberFormatException ex) {
+                        JOptionPane.showMessageDialog(null, "Por favor, ingresa solo números válidos", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+
+            });
+
+
         } catch (NumberFormatException e) {
-            // TODO: handle exception
+            JOptionPane.showMessageDialog(null, "Por favor, ingresa un numero valido", "Error", JOptionPane.ERROR_MESSAGE);
         }
 
         // ----------------------agregar elementos de ventanta ------------------------
@@ -84,10 +172,10 @@ public class Main {
         ventana.add(campo2);
         ventana.add(campo3);
         ventana.add(campo4);
-        ventana.add(sumarBoton);
-        ventana.add(restarBoton);
-        ventana.add(multiplicarButton);
-        ventana.add(dividirButton);
+        ventana.add(botonSumar);
+        ventana.add(botonRestar);
+        ventana.add(botonMultiplicar);
+        ventana.add(botonDividir);
         ventana.add(botonConvertirCelsius);
         ventana.add(botonConvertirFahrenheit);
         ventana.add(botonConvertirDolares);
