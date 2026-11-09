@@ -75,8 +75,8 @@ public class Main {
                 public void actionPerformed(ActionEvent e) {
 
                     try {
-                        double num1 = Double.parseDouble(campo1.getText());
-                        double num2 = Double.parseDouble(campo2.getText());
+                        double num1 = Double.parseDouble(campo1.getText().trim().replace(',', '.'));
+                        double num2 = Double.parseDouble(campo2.getText().trim().replace(',', '.'));
 
                         double sumar = num1 + num2;
 
@@ -96,8 +96,8 @@ public class Main {
                 public void actionPerformed(ActionEvent e) {
 
                     try {
-                        double num1 = Double.parseDouble(campo1.getText());
-                        double num2 = Double.parseDouble(campo2.getText());
+                        double num1 = Double.parseDouble(campo1.getText().trim().replace(',', '.'));
+                        double num2 = Double.parseDouble(campo2.getText().trim().replace(',', '.'));
 
                         double restar = num1 - num2;
 
@@ -117,8 +117,8 @@ public class Main {
                 public void actionPerformed(ActionEvent e) {
 
                     try {
-                        double num1 = Double.parseDouble(campo1.getText());
-                        double num2 = Double.parseDouble(campo2.getText());
+                        double num1 = Double.parseDouble(campo1.getText().trim().replace(',', '.'));
+                        double num2 = Double.parseDouble(campo2.getText().trim().replace(',', '.'));
 
                         double multiplicar = num1 * num2;
 
@@ -138,8 +138,8 @@ public class Main {
                 public void actionPerformed(ActionEvent e) {
 
                     try {
-                        double num1 = Double.parseDouble(campo1.getText());
-                        double num2 = Double.parseDouble(campo2.getText());
+                        double num1 = Double.parseDouble(campo1.getText().trim().replace(',', '.'));
+                        double num2 = Double.parseDouble(campo2.getText().trim().replace(',', '.'));
 
                         if (num2 == 0) {
                             JOptionPane.showMessageDialog(null, "No se puede dividir entre cero.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -150,14 +150,49 @@ public class Main {
                         }
 
 
-                    } catch (NumberFormatException ex) {
+                    } catch (
+                            NumberFormatException ex) {            // ---------------------- Convertir °C a °F------------------------
+
+                        botonConvertirFahrenheit.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+
+                                try {
+                                    double num1 = Double.parseDouble(campo3.getText().trim().replace(',', '.'));
+
+                                    double fahrenheit = (num1 * 9.0 / 5.0) + 32;
+
+                                    JOptionPane.showMessageDialog(null, "Fahrenheit: " + String.format("%.2f", fahrenheit) + " °F");
+
+                                } catch (NumberFormatException ex) {
+                                    JOptionPane.showMessageDialog(null, "Por favor, ingresa solo números válidos", "Error", JOptionPane.ERROR_MESSAGE);
+                                }
+                            }
+
+                        });
+
+                        // ---------------------- Convertir °F a °C ------------------------
+
+                        botonConvertirCelsius.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+
+                                try {
+                                    double num1 = Double.parseDouble(campo3.getText().trim().replace(',', '.'));
+
+                                    double celsius = (num1 - 32) * 5.0 / 9.0;
+
+                                    JOptionPane.showMessageDialog(null, "Celsius: " + String.format("%.2f", celsius) + " °C");
+
+                                } catch (NumberFormatException ex) {
+                                    JOptionPane.showMessageDialog(null, "Por favor, ingresa solo números válidos", "Error", JOptionPane.ERROR_MESSAGE);
+                                }
+                            }
+                        });
                         JOptionPane.showMessageDialog(null, "Por favor, ingresa solo números válidos", "Error", JOptionPane.ERROR_MESSAGE);
                     }
                 }
-
             });
-
-
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Por favor, ingresa un numero valido", "Error", JOptionPane.ERROR_MESSAGE);
         }
