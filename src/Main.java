@@ -156,45 +156,84 @@ public class Main {
                     }
                 }
             });
-            
+
             // ---------------------- Convertir °C a °F------------------------
 
-                        botonConvertirFahrenheit.addActionListener(new ActionListener() {
-                            @Override
-                            public void actionPerformed(ActionEvent e) {
+            botonConvertirFahrenheit.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
 
-                                try {
-                                    double num1 = Double.parseDouble(campo3.getText().trim().replace(',', '.'));
+                    try {
+                        double num1 = Double.parseDouble(campo3.getText().trim().replace(',', '.'));
 
-                                    double fahrenheit = (num1 * 9.0 / 5.0) + 32;
+                        double fahrenheit = (num1 * 9.0 / 5.0) + 32;
 
-                                    JOptionPane.showMessageDialog(null, "Fahrenheit: " + String.format("%.2f", fahrenheit) + " °F");
+                        JOptionPane.showMessageDialog(null, "Fahrenheit: " + String.format("%.2f", fahrenheit) + " °F");
 
-                                } catch (NumberFormatException ex) {
-                                    JOptionPane.showMessageDialog(null, "Por favor, ingresa solo números válidos", "Error", JOptionPane.ERROR_MESSAGE);
-                                }
-                            }
+                    } catch (NumberFormatException ex) {
+                        JOptionPane.showMessageDialog(null, "Por favor, ingresa solo números válidos", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
 
-                        });
+            });
 
-                        // ---------------------- Convertir °F a °C ------------------------
+            // ---------------------- Convertir °F a °C ------------------------
 
-                        botonConvertirCelsius.addActionListener(new ActionListener() {
-                            @Override
-                            public void actionPerformed(ActionEvent e) {
+            botonConvertirCelsius.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
 
-                                try {
-                                    double num1 = Double.parseDouble(campo3.getText().trim().replace(',', '.'));
+                    try {
+                        double num1 = Double.parseDouble(campo3.getText().trim().replace(',', '.'));
 
-                                    double celsius = (num1 - 32) * 5.0 / 9.0;
+                        double celsius = (num1 - 32) * 5.0 / 9.0;
 
-                                    JOptionPane.showMessageDialog(null, "Celsius: " + String.format("%.2f", celsius) + " °C");
+                        JOptionPane.showMessageDialog(null, "Celsius: " + String.format("%.2f", celsius) + " °C");
 
-                                } catch (NumberFormatException ex) {
-                                    JOptionPane.showMessageDialog(null, "Por favor, ingresa solo números válidos", "Error", JOptionPane.ERROR_MESSAGE);
-                                }
-                            }
-                        });
+                    } catch (NumberFormatException ex) {
+                        JOptionPane.showMessageDialog(null, "Por favor, ingresa solo números válidos", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            });
+
+            // ---------------------- Convertir el monto en USD ------------------------
+
+            botonConvertirDolares.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+
+                    try {
+                        double pesos = Double.parseDouble(campo4.getText().trim().replace(',', '.'));
+
+                        double USD = pesos / 3200;
+
+                        JOptionPane.showMessageDialog(null, "Monto a Dólares: $" + String.format("%.2f", USD));
+
+                    } catch (NumberFormatException ex) {
+                        JOptionPane.showMessageDialog(null, "Por favor, ingresa solo números válidos", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            });
+
+// ---------------------- Convertir el monto en USD ------------------------
+
+            botonConvertirPesos.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+
+                    try {
+                        double dolares = Double.parseDouble(campo4.getText().trim().replace(',', '.'));
+
+                        double COP = dolares * 3200;
+
+                        JOptionPane.showMessageDialog(null, "Monto a Pesos Colombianos: $" + String.format("%.2f", COP));
+
+                    } catch (NumberFormatException ex) {
+                        JOptionPane.showMessageDialog(null, "Por favor, ingresa solo números válidos", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            });
+
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Por favor, ingresa un numero valido", "Error", JOptionPane.ERROR_MESSAGE);
         }
