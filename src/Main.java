@@ -151,7 +151,13 @@ public class Main {
 
 
                     } catch (
-                            NumberFormatException ex) {            // ---------------------- Convertir °C a °F------------------------
+                            NumberFormatException ex) {
+                        JOptionPane.showMessageDialog(null, "Por favor, ingresa solo números válidos", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            });
+            
+            // ---------------------- Convertir °C a °F------------------------
 
                         botonConvertirFahrenheit.addActionListener(new ActionListener() {
                             @Override
@@ -189,11 +195,7 @@ public class Main {
                                 }
                             }
                         });
-                        JOptionPane.showMessageDialog(null, "Por favor, ingresa solo números válidos", "Error", JOptionPane.ERROR_MESSAGE);
-                    }
-                }
-            });
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Por favor, ingresa un numero valido", "Error", JOptionPane.ERROR_MESSAGE);
         }
 
