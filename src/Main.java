@@ -1,8 +1,23 @@
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
+import java.awt.Component;
+import java.awt.event.*;
 
 public class Main {
+    private static final double TASA_USD_COP = 3200;
+
+    private static double leerNumero(JTextField campo) {
+        return Double.parseDouble(campo.getText().trim().replace(',', '.'));
+    }
+
+    private static String formatear(double datos) {
+        return String.format("%.2f", datos);
+    }
+
+    private static void mostrarError(String mensaje) {
+        JOptionPane.showMessageDialog(null, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
+    }
+
     public static void main(String[] args) {
         // ----------------------Titulos------------------------
 
@@ -63,199 +78,140 @@ public class Main {
         botonConvertirDolares.setBounds(50, 460, 200, 40);
 
         JButton botonConvertirPesos = new JButton("Convertir a Pesos Colombianos (COP)");
-        botonConvertirPesos.setBounds(310, 460, 200, 40);
+        botonConvertirPesos.setBounds(310, 460, 280, 40);
 
         // ---------------------- EventActions ------------------------
-        try {
 
-            // ---------------------- Sumar ------------------------
+        // ---------------------- Sumar ------------------------
 
-            botonSumar.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
+        botonSumar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
 
-                    try {
-                        double num1 = Double.parseDouble(campo1.getText().trim().replace(',', '.'));
-                        double num2 = Double.parseDouble(campo2.getText().trim().replace(',', '.'));
-
-                        double sumar = num1 + num2;
-
-                        JOptionPane.showMessageDialog(null, "Suma es: " + sumar);
-
-                    } catch (NumberFormatException ex) {
-                        JOptionPane.showMessageDialog(null, "Por favor, ingresa solo números válidos", "Error", JOptionPane.ERROR_MESSAGE);
-                    }
+                try {
+                    JOptionPane.showMessageDialog(null,
+                            "Suma es: " + formatear(leerNumero(campo1) + leerNumero(campo2)));
+                } catch (NumberFormatException ex) {
+                    mostrarError("Por favor, ingresa solo números válidos");
                 }
+            }
+        });
 
-            });
+        // ---------------------- Restar ------------------------
 
-            // ---------------------- Restar ------------------------
+        botonRestar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
 
-            botonRestar.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-
-                    try {
-                        double num1 = Double.parseDouble(campo1.getText().trim().replace(',', '.'));
-                        double num2 = Double.parseDouble(campo2.getText().trim().replace(',', '.'));
-
-                        double restar = num1 - num2;
-
-                        JOptionPane.showMessageDialog(null, "Resta es: " + restar);
-
-                    } catch (NumberFormatException ex) {
-                        JOptionPane.showMessageDialog(null, "Por favor, ingresa solo números válidos", "Error", JOptionPane.ERROR_MESSAGE);
-                    }
+                try {
+                    JOptionPane.showMessageDialog(null,
+                            "Resta es: " + formatear(leerNumero(campo1) - leerNumero(campo2)));
+                } catch (NumberFormatException ex) {
+                    mostrarError("Por favor, ingresa solo números válidos");
                 }
+            }
+        });
 
-            });
+        // ---------------------- Multplicacion ------------------------
 
-            // ---------------------- Multplicacion ------------------------
+        botonMultiplicar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
 
-            botonMultiplicar.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-
-                    try {
-                        double num1 = Double.parseDouble(campo1.getText().trim().replace(',', '.'));
-                        double num2 = Double.parseDouble(campo2.getText().trim().replace(',', '.'));
-
-                        double multiplicar = num1 * num2;
-
-                        JOptionPane.showMessageDialog(null, "Multiplicación es: " + multiplicar);
-
-                    } catch (NumberFormatException ex) {
-                        JOptionPane.showMessageDialog(null, "Por favor, ingresa solo números válidos", "Error", JOptionPane.ERROR_MESSAGE);
-                    }
+                try {
+                    JOptionPane.showMessageDialog(null,
+                            "Multiplicación es: " + formatear(leerNumero(campo1) * leerNumero(campo2)));
+                } catch (NumberFormatException ex) {
+                    mostrarError("Por favor, ingresa solo números válidos");
                 }
+            }
 
-            });
+        });
 
-            // ---------------------- Division ------------------------
+        // ---------------------- Division ------------------------
 
-            botonDividir.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
+        botonDividir.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
 
-                    try {
-                        double num1 = Double.parseDouble(campo1.getText().trim().replace(',', '.'));
-                        double num2 = Double.parseDouble(campo2.getText().trim().replace(',', '.'));
-
-                        if (num2 == 0) {
-                            JOptionPane.showMessageDialog(null, "No se puede dividir entre cero.", "Error", JOptionPane.ERROR_MESSAGE);
-                        } else {
-                            double dividir = num1 / num2;
-
-                            JOptionPane.showMessageDialog(null, "División es: " + dividir);
-                        }
-
-
-                    } catch (
-                            NumberFormatException ex) {
-                        JOptionPane.showMessageDialog(null, "Por favor, ingresa solo números válidos", "Error", JOptionPane.ERROR_MESSAGE);
+                try {
+                    if (leerNumero(campo2) == 0) {
+                        mostrarError("No se puede dividir entre cero.");
+                    } else {
+                        JOptionPane.showMessageDialog(null,
+                                "División es: " + formatear(leerNumero(campo1) / leerNumero(campo2)));
                     }
+
+                } catch (NumberFormatException ex) {
+                    mostrarError("Por favor, ingresa solo números válidos");
                 }
-            });
+            }
+        });
 
-            // ---------------------- Convertir °C a °F------------------------
+        // ---------------------- Convertir °C a °F------------------------
 
-            botonConvertirFahrenheit.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-
-                    try {
-                        double num1 = Double.parseDouble(campo3.getText().trim().replace(',', '.'));
-
-                        double fahrenheit = (num1 * 9.0 / 5.0) + 32;
-
-                        JOptionPane.showMessageDialog(null, "Fahrenheit: " + String.format("%.2f", fahrenheit) + " °F");
-
-                    } catch (NumberFormatException ex) {
-                        JOptionPane.showMessageDialog(null, "Por favor, ingresa solo números válidos", "Error", JOptionPane.ERROR_MESSAGE);
-                    }
+        botonConvertirFahrenheit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    double fahrenheit = (leerNumero(campo3) * 9.0 / 5.0) + 32;
+                    JOptionPane.showMessageDialog(null, "Fahrenheit: " + formatear(fahrenheit) + " °F");
+                } catch (NumberFormatException ex) {
+                    mostrarError("Por favor, ingresa solo números válidos");
                 }
+            }
+        });
 
-            });
+        // ---------------------- Convertir °F a °C ------------------------
 
-            // ---------------------- Convertir °F a °C ------------------------
-
-            botonConvertirCelsius.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-
-                    try {
-                        double num1 = Double.parseDouble(campo3.getText().trim().replace(',', '.'));
-
-                        double celsius = (num1 - 32) * 5.0 / 9.0;
-
-                        JOptionPane.showMessageDialog(null, "Celsius: " + String.format("%.2f", celsius) + " °C");
-
-                    } catch (NumberFormatException ex) {
-                        JOptionPane.showMessageDialog(null, "Por favor, ingresa solo números válidos", "Error", JOptionPane.ERROR_MESSAGE);
-                    }
+        botonConvertirCelsius.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    double celsius = (leerNumero(campo3) - 32) * 5.0 / 9.0;
+                    JOptionPane.showMessageDialog(null, "Celsius: " + formatear(celsius) + " °C");
+                } catch (NumberFormatException ex) {
+                    mostrarError("Por favor, ingresa solo números válidos");
                 }
-            });
+            }
+        });
 
-            // ---------------------- Convertir el monto en USD ------------------------
+        // ---------------------- Convertir el monto en USD ------------------------
 
-            botonConvertirDolares.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-
-                    try {
-                        double pesos = Double.parseDouble(campo4.getText().trim().replace(',', '.'));
-
-                        double USD = pesos / 3200;
-
-                        JOptionPane.showMessageDialog(null, "Monto a Dólares: $" + String.format("%.2f", USD));
-
-                    } catch (NumberFormatException ex) {
-                        JOptionPane.showMessageDialog(null, "Por favor, ingresa solo números válidos", "Error", JOptionPane.ERROR_MESSAGE);
-                    }
+        botonConvertirDolares.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    double USD = leerNumero(campo4) / TASA_USD_COP;
+                    JOptionPane.showMessageDialog(null, "USD " + formatear(USD));
+                } catch (NumberFormatException ex) {
+                    mostrarError("Por favor, ingresa solo números válidos");
                 }
-            });
+            }
+        });
 
-// ---------------------- Convertir el monto en USD ------------------------
+        // ---------------------- Convertir el monto en COP ------------------------
 
-            botonConvertirPesos.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-
-                    try {
-                        double dolares = Double.parseDouble(campo4.getText().trim().replace(',', '.'));
-
-                        double COP = dolares * 3200;
-
-                        JOptionPane.showMessageDialog(null, "Monto a Pesos Colombianos: $" + String.format("%.2f", COP));
-
-                    } catch (NumberFormatException ex) {
-                        JOptionPane.showMessageDialog(null, "Por favor, ingresa solo números válidos", "Error", JOptionPane.ERROR_MESSAGE);
-                    }
+        botonConvertirPesos.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    double COP = leerNumero(campo4) * TASA_USD_COP;
+                    JOptionPane.showMessageDialog(null, "COP " + formatear(COP));
+                } catch (NumberFormatException ex) {
+                    mostrarError("Por favor, ingresa solo números válidos");
                 }
-            });
-
-        } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(null, "Por favor, ingresa un numero valido", "Error", JOptionPane.ERROR_MESSAGE);
-        }
+            }
+        });
 
         // ----------------------agregar elementos de ventanta ------------------------
-
-        ventana.add(label1);
-        ventana.add(label2);
-        ventana.add(label3);
-        ventana.add(label4);
-        ventana.add(campo1);
-        ventana.add(campo2);
-        ventana.add(campo3);
-        ventana.add(campo4);
-        ventana.add(botonSumar);
-        ventana.add(botonRestar);
-        ventana.add(botonMultiplicar);
-        ventana.add(botonDividir);
-        ventana.add(botonConvertirCelsius);
-        ventana.add(botonConvertirFahrenheit);
-        ventana.add(botonConvertirDolares);
-        ventana.add(botonConvertirPesos);
+        for (Component c : new Component[] { label1, label2, label3, label4,
+                campo1, campo2, campo3, campo4,
+                botonSumar, botonRestar, botonMultiplicar, botonDividir,
+                botonConvertirCelsius, botonConvertirFahrenheit,
+                botonConvertirDolares, botonConvertirPesos }) {
+            ventana.add(c);
+        }
 
         // ----------------------------------------------
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
