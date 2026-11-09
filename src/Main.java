@@ -34,11 +34,11 @@ public class Main {
         JLabel label2 = new JLabel("Ingresa el segundo numero:");
         label2.setBounds(450, 50, 200, 30);
 
-        JTextField campo1 = new JTextField();
-        campo1.setBounds(50, 80, 300, 30);
+        JTextField operaCampo1 = new JTextField();
+        operaCampo1.setBounds(50, 80, 300, 30);
 
-        JTextField campo2 = new JTextField();
-        campo2.setBounds(450, 80, 300, 30);
+        JTextField operaCampo2 = new JTextField();
+        operaCampo2.setBounds(450, 80, 300, 30);
 
         JButton botonSumar = new JButton("Sumar");
         botonSumar.setBounds(50, 120, 110, 40);
@@ -57,8 +57,8 @@ public class Main {
         JLabel label3 = new JLabel("Ingresa la temperatura a convertir:");
         label3.setBounds(50, 210, 250, 30);
 
-        JTextField campo3 = new JTextField();
-        campo3.setBounds(50, 250, 250, 30);
+        JTextField tempCampo = new JTextField();
+        tempCampo.setBounds(50, 250, 250, 30);
 
         JButton botonConvertirFahrenheit = new JButton("Convertir a fahrenheit");
         botonConvertirFahrenheit.setBounds(50, 300, 200, 40);
@@ -71,8 +71,8 @@ public class Main {
         JLabel label4 = new JLabel("Ingresa el monto a convertir:");
         label4.setBounds(50, 380, 300, 30);
 
-        JTextField campo4 = new JTextField();
-        campo4.setBounds(50, 410, 250, 30);
+        JTextField monedaCampo = new JTextField();
+        monedaCampo.setBounds(50, 410, 250, 30);
 
         JButton botonConvertirDolares = new JButton("Convertir a dolares (USD)");
         botonConvertirDolares.setBounds(50, 460, 200, 40);
@@ -90,7 +90,7 @@ public class Main {
 
                 try {
                     JOptionPane.showMessageDialog(null,
-                            "Suma es: " + formatear(leerNumero(campo1) + leerNumero(campo2)));
+                            "Suma es: " + formatear(leerNumero(operaCampo1) + leerNumero(operaCampo2)));
                 } catch (NumberFormatException ex) {
                     mostrarError("Por favor, ingresa solo números válidos");
                 }
@@ -105,7 +105,7 @@ public class Main {
 
                 try {
                     JOptionPane.showMessageDialog(null,
-                            "Resta es: " + formatear(leerNumero(campo1) - leerNumero(campo2)));
+                            "Resta es: " + formatear(leerNumero(operaCampo1) - leerNumero(operaCampo2)));
                 } catch (NumberFormatException ex) {
                     mostrarError("Por favor, ingresa solo números válidos");
                 }
@@ -120,7 +120,7 @@ public class Main {
 
                 try {
                     JOptionPane.showMessageDialog(null,
-                            "Multiplicación es: " + formatear(leerNumero(campo1) * leerNumero(campo2)));
+                            "Multiplicación es: " + formatear(leerNumero(operaCampo1) * leerNumero(operaCampo2)));
                 } catch (NumberFormatException ex) {
                     mostrarError("Por favor, ingresa solo números válidos");
                 }
@@ -135,11 +135,11 @@ public class Main {
             public void actionPerformed(ActionEvent e) {
 
                 try {
-                    if (leerNumero(campo2) == 0) {
+                    if (leerNumero(operaCampo2) == 0) {
                         mostrarError("No se puede dividir entre cero.");
                     } else {
                         JOptionPane.showMessageDialog(null,
-                                "División es: " + formatear(leerNumero(campo1) / leerNumero(campo2)));
+                                "División es: " + formatear(leerNumero(operaCampo1) / leerNumero(operaCampo2)));
                     }
 
                 } catch (NumberFormatException ex) {
@@ -154,7 +154,7 @@ public class Main {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    double fahrenheit = (leerNumero(campo3) * 9.0 / 5.0) + 32;
+                    double fahrenheit = (leerNumero(tempCampo) * 9.0 / 5.0) + 32;
                     JOptionPane.showMessageDialog(null, "Fahrenheit: " + formatear(fahrenheit) + " °F");
                 } catch (NumberFormatException ex) {
                     mostrarError("Por favor, ingresa solo números válidos");
@@ -168,7 +168,7 @@ public class Main {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    double celsius = (leerNumero(campo3) - 32) * 5.0 / 9.0;
+                    double celsius = (leerNumero(tempCampo) - 32) * 5.0 / 9.0;
                     JOptionPane.showMessageDialog(null, "Celsius: " + formatear(celsius) + " °C");
                 } catch (NumberFormatException ex) {
                     mostrarError("Por favor, ingresa solo números válidos");
@@ -182,7 +182,7 @@ public class Main {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    double USD = leerNumero(campo4) / TASA_USD_COP;
+                    double USD = leerNumero(monedaCampo) / TASA_USD_COP;
                     JOptionPane.showMessageDialog(null, "USD " + formatear(USD));
                 } catch (NumberFormatException ex) {
                     mostrarError("Por favor, ingresa solo números válidos");
@@ -196,7 +196,7 @@ public class Main {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    double COP = leerNumero(campo4) * TASA_USD_COP;
+                    double COP = leerNumero(monedaCampo) * TASA_USD_COP;
                     JOptionPane.showMessageDialog(null, "COP " + formatear(COP));
                 } catch (NumberFormatException ex) {
                     mostrarError("Por favor, ingresa solo números válidos");
@@ -206,7 +206,7 @@ public class Main {
 
         // ----------------------agregar elementos de ventanta ------------------------
         for (Component c : new Component[] { label1, label2, label3, label4,
-                campo1, campo2, campo3, campo4,
+                operaCampo1, operaCampo2, tempCampo, monedaCampo,
                 botonSumar, botonRestar, botonMultiplicar, botonDividir,
                 botonConvertirCelsius, botonConvertirFahrenheit,
                 botonConvertirDolares, botonConvertirPesos }) {
